@@ -121,7 +121,6 @@ contract MineBlocks is owned, token {
 	function transfer(address _to, uint256 _value) public {
 		if (balanceOf[msg.sender] < _value) revert();           // Check if the sender has enough
 		if (balanceOf[_to] + _value < balanceOf[_to]) revert(); // Check for overflows
-		if (frozenAccount[msg.sender]) revert();                // Check if frozen
 		balanceOf[msg.sender] -= _value;                     // Subtract from the sender
 		balanceOf[_to] += _value;                            // Add the same to the recipient
 		Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
@@ -130,7 +129,7 @@ contract MineBlocks is owned, token {
 
 	/* A contract attempts to get the coins */
 	function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-		if (frozenAccount[_from]) revert();                        // Check if frozen            
+		                 
 		if (balanceOf[_from] < _value) revert();                 // Check if the sender has enough
 		if (balanceOf[_to] + _value < balanceOf[_to]) revert();  // Check for overflows
 		if (_value > allowance[_from][msg.sender]) revert();   // Check allowance
@@ -171,12 +170,10 @@ contract MineBlocks is owned, token {
 
 	function buy() public payable {
 	
-
-			if (frozenAccount[msg.sender]) revert();                        // Check if frozen   
 				
-				if(buyPrice<minPrice) {
-				buyPrice=minPrice;
-				}
+			if(buyPrice<minPrice) {
+			buyPrice=minPrice;
+			}
 
 			 if (msg.sender.balance < msg.value) revert();                 // Check if the sender has enought eth to buy
 			 if (msg.sender.balance + msg.value < msg.sender.balance) revert(); //check for overflows
@@ -220,7 +217,7 @@ contract MineBlocks is owned, token {
 	function sell(uint256 amount) public {
 	
 
-		if (frozenAccount[msg.sender]) revert();                        // Check if frozen   
+	
 		   uint dec=decimals; 
 		   var amountbalance = amount*(10**dec); 
 			if (balanceOf[this] + amountbalance < balanceOf[this]) revert(); // Check for overflows

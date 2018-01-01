@@ -93,13 +93,9 @@ contract token is owned{
 		return true;
 	}
 
-	/* This unnamed function is called whenever someone tries to send ether to it */
-//	function () {
-	//	buy();   // Allow to buy tokens sending ether direcly to contract
-//	}
 }
 
-contract TokenFederalReserve is owned, token {
+contract MineBlocks is owned, token {
 
 	//Declare public contract variables
 	
@@ -110,15 +106,11 @@ contract TokenFederalReserve is owned, token {
 	uint8 public spread=5;
 
 
-
-
-	mapping (address => bool) public frozenAccount;
-
 	/* This generates a public event on the blockchain that will notify clients */
-	event FrozenFunds(address target, bool frozen);
+
 
 	/* Initializes contract with initial supply tokens to the creator of the contract */
-	function TokenFederalReserve(
+	function MineBlocks(
 		uint256 initialSupply,
 		string tokenName,
 		uint8 decimalUnits,
@@ -129,7 +121,6 @@ contract TokenFederalReserve is owned, token {
 	function transfer(address _to, uint256 _value) public {
 		if (balanceOf[msg.sender] < _value) revert();           // Check if the sender has enough
 		if (balanceOf[_to] + _value < balanceOf[_to]) revert(); // Check for overflows
-		if (frozenAccount[msg.sender]) revert();                // Check if frozen
 		balanceOf[msg.sender] -= _value;                     // Subtract from the sender
 		balanceOf[_to] += _value;                            // Add the same to the recipient
 		Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
@@ -138,7 +129,7 @@ contract TokenFederalReserve is owned, token {
 
 	/* A contract attempts to get the coins */
 	function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-		if (frozenAccount[_from]) revert();                        // Check if frozen            
+		                 
 		if (balanceOf[_from] < _value) revert();                 // Check if the sender has enough
 		if (balanceOf[_to] + _value < balanceOf[_to]) revert();  // Check for overflows
 		if (_value > allowance[_from][msg.sender]) revert();   // Check allowance
@@ -158,7 +149,7 @@ contract TokenFederalReserve is owned, token {
 	//Declare logging events
 	event LogDeposit(address sender, uint amount);
 
-	event LogBuy(address receiver, uint amount);
+
 	event LogTransfer(address sender, address to, uint amount);
 
 
@@ -179,12 +170,10 @@ contract TokenFederalReserve is owned, token {
 
 	function buy() public payable {
 	
-
-			if (frozenAccount[msg.sender]) revert();                        // Check if frozen   
 				
-				if(buyPrice<minPrice) {
-				buyPrice=minPrice;
-				}
+			if(buyPrice<minPrice) {
+			buyPrice=minPrice;
+			}
 
 			 if (msg.sender.balance < msg.value) revert();                 // Check if the sender has enought eth to buy
 			 if (msg.sender.balance + msg.value < msg.sender.balance) revert(); //check for overflows
@@ -228,7 +217,7 @@ contract TokenFederalReserve is owned, token {
 	function sell(uint256 amount) public {
 	
 
-		if (frozenAccount[msg.sender]) revert();                        // Check if frozen   
+	
 		   uint dec=decimals; 
 		   var amountbalance = amount*(10**dec); 
 			if (balanceOf[this] + amountbalance < balanceOf[this]) revert(); // Check for overflows
