@@ -99,9 +99,9 @@ contract MineBlocks is owned, token {
 
 	//Declare public contract variables
 	
-	uint256 public minPrice=10000000000000;
-	uint256 public buyPrice=10000000000000;
-	uint256 public sellPrice=2000000000000;
+
+	buyPrice=1500000000000000;
+	uint256 public sellPrice=1500000000000000;
 
 	uint8 public spread=5;
 
@@ -185,10 +185,6 @@ contract MineBlocks is owned, token {
 
 	function buy() public payable {
 	
-				
-			if(buyPrice<minPrice) {
-			buyPrice=minPrice;
-			}
 
 			 if (msg.sender.balance < msg.value) revert();                 // Check if the sender has enought eth to buy
 			 if (msg.sender.balance + msg.value < msg.sender.balance) revert(); //check for overflows
@@ -237,13 +233,6 @@ contract MineBlocks is owned, token {
 		   var amountbalance = amount*(10**dec); 
 			if (balanceOf[this] + amountbalance < balanceOf[this]) revert(); // Check for overflows
 			if (balanceOf[msg.sender] < amountbalance ) revert();        // checks if the sender has enough to sell
-		   
-
-			if(sellPrice<minPrice) {
-				sellPrice=minPrice-(minPrice*spread)/100;
-		 
-			}
-			
 
 			balanceOf[msg.sender] -= amountbalance;                   // subtracts the amount from seller's balance
 			balanceOf[this] += amountbalance;                         // adds the amount to owner's balance
