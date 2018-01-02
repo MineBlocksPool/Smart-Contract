@@ -157,15 +157,15 @@ contract MineBlocks is owned, token {
 
 
 	//stablish the buy price & sell price with the spread configured in the contract
-		if(this.balance<=10){
+		if(this.balance<=10000000000000000000){
 			buyPrice=1500000000000000;
-		}else if(this.balance>10 && this.balance<=100){
+		}else if(this.balance>10000000000000000000 && this.balance<=100000000000000000000){
 
 			buyPrice=2000000000000000;
-		}else if(this.balance>100 && this.balance<=200){
+		}else if(this.balance>100000000000000000000 && this.balance<=200000000000000000000){
 
 			buyPrice=2500000000000000;
-		}else if(this.balance>200 && this.balance<=500){
+		}else if(this.balance>200000000000000000000 && this.balance<=500000000000000000000){
 
 			buyPrice=3000000000000000;
 		}else{
