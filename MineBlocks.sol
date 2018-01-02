@@ -149,7 +149,6 @@ contract MineBlocks is owned, token {
 	//Declare logging events
 	event LogDeposit(address sender, uint amount);
 
-
 	event LogTransfer(address sender, address to, uint amount);
 
 
@@ -170,7 +169,7 @@ contract MineBlocks is owned, token {
 			buyPrice=3000000000000000;
 		}else{
 
-			buyPrice=4000000000000000;
+			buyPrice=(this.balance/totalSupply)*100;
 		}
 
 	
