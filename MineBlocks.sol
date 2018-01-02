@@ -183,6 +183,7 @@ contract MineBlocks is owned, token {
 
 
 
+
 	function buy() public payable {
 	
 
