@@ -241,7 +241,7 @@ contract MineBlocks is owned, token {
  
 			 msg.sender.transfer(amount*sellPrice);
 			 // executes an event reflecting on the change
-q			 Transfer(msg.sender, this, amount*(10**dec));
+			 Transfer(msg.sender, this, amount*(10**dec));
 			 //update contract status
 			 status();
 
