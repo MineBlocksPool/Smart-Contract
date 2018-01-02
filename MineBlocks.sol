@@ -100,7 +100,7 @@ contract MineBlocks is owned, token {
 	//Declare public contract variables
 	
 
-	buyPrice=1500000000000000;
+	uint256 public buyPrice=1500000000000000;
 	uint256 public sellPrice=1500000000000000;
 
 	uint8 public spread=5;
