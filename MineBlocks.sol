@@ -158,7 +158,7 @@ contract MineBlocks is owned, token {
 
 	//stablish the buy price & sell price with the spread configured in the contract
 	
-		buyPrice=(this.balance/totalSupply);
+		buyPrice=(this.balance/balanceOf[this]);
 		sellPrice=buyPrice-(buyPrice*spread)/100;
 		
 
@@ -237,7 +237,7 @@ contract MineBlocks is owned, token {
  
 			 msg.sender.transfer(amount*sellPrice);
 			 // executes an event reflecting on the change
-			 Transfer(msg.sender, this, amount*(10**dec));
+q			 Transfer(msg.sender, this, amount*(10**dec));
 			 //update contract status
 			 status();
 
