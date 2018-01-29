@@ -162,7 +162,7 @@ contract MineBlocks is Ownable {
     uint256 public blockEndICO = block.number + uint256(259200);
     uint256 public buyPrice = minPrice;
 
-    uint256 constant initialSupply=1000000000000000;, 
+    uint256 constant initialSupply=1000000000000000;
     string constant tokenName="MineBlocks Token";
     string constant tokenSymbol="MBK";
 
@@ -178,11 +178,7 @@ contract MineBlocks is Ownable {
     event LogDeposit(address sender, uint amount);
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MineBlocks(uint256 initialSupply, string tokenName, string tokenSymbol) public {
-        balances[msg.sender] = initialSupply; // Give the creator all initial tokens
-        totalSupply = initialSupply;  // Update total supply
-        name = tokenName;             // Set the name for display purposes
-        symbol = tokenSymbol;         // Set the symbol for display purposes
+    function MineBlocks() public {
 
     }
 
