@@ -159,7 +159,7 @@ contract MineBlocks is Ownable {
 
     // Contract variables and constants
     uint256 public constant minPrice = 10e12;
-    uint256 public constant blockEndICO = 4000000;
+    uint256 public constant blockEndICO = block.number + 172800;
     uint256 public buyPrice = minPrice;
 
     uint256 public tokenReward = 0;
