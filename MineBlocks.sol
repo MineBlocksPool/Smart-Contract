@@ -177,10 +177,13 @@ contract MineBlocks is Ownable {
     //Declare logging events
     event LogDeposit(address sender, uint amount);
 
-
     /* Initializes contract with initial supply tokens to the creator of the contract */
     function MineBlocks() public {
-       balances[this] = initialSupply; // Give the creator all initial tokens
+        balances[msg.sender] = initialSupply; // Give the creator all initial tokens
+        totalSupply = initialSupply;  // Update total supply
+        name = tokenName;             // Set the name for display purposes
+        symbol = tokenSymbol;         // Set the symbol for display purposes
+
     }
 
     function () public payable {
