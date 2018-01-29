@@ -162,6 +162,10 @@ contract MineBlocks is Ownable {
     uint256 public blockEndICO = block.number + uint256(259200);
     uint256 public buyPrice = minPrice;
 
+    uint256 constant initialSupply=1000000000000000;, 
+    string constant tokenName="MineBlocks Token";
+    string constant tokenSymbol="MBK";
+
     uint256 public tokenReward = 0;
     // constant to simplify conversion of token amounts into integer form
     uint256 private constant tokenUnit = uint256(10)**decimals;
